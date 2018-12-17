@@ -15,4 +15,7 @@ class Task extends Model
 {
     public $id;
     public $status;
+    public $due_date;
+    public $manager;
+    public $creation_date;
 }
