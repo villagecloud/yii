@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\validators\CustomValidator;
 use Yii;
 use yii\base\Model;
 
@@ -22,6 +23,7 @@ class Task extends Model
         return [
             [['id', 'title', 'status', 'category', 'description', 'manager', 'creation_date', 'due_date', 'attachment'], 'required'],
             ['title', 'myRule'],
+            ['manager', CustomValidator::className()],
         ];
     }
 

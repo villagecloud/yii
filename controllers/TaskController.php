@@ -19,12 +19,14 @@ class TaskController extends Controller
                     'id' => 13,
                     'title' => 'test',
                     'status' => 'completed',
+                    'manager' => 'Not Geek',
                 ]
         ]
         );
 
         var_dump($model);
         var_dump($model->validate());
+        //echo $model->getAttributeLabel('title');
         var_dump($model->getErrors());exit;
 
         return $this->render('index');
