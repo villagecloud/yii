@@ -5,10 +5,16 @@ namespace app\models;
 use app\components\validators\CustomValidator;
 use Yii;
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class Task extends Model
+/**
+ * Class Task
+ * @property string $title
+ * @property string $status
+ */
+class Task extends ActiveRecord
 {
-    public $id;
+/*    public $id;
     public $title;
     public $status;
     public $category;
@@ -16,14 +22,19 @@ class Task extends Model
     public $manager;
     public $creation_date;
     public $due_date;
-    public $attachment;
+    public $attachment;*/
+
+    public static function tableName()
+    {
+        return 'task';
+    }
 
     public function rules()
     {
         return [
-            [['id', 'title', 'status', 'category', 'description', 'manager', 'creation_date', 'due_date', 'attachment'], 'required'],
+            [['title', 'status'], 'required'],
             ['title', 'myRule'],
-            ['manager', CustomValidator::className()],
+            ['manager', CustomValidator::class],
         ];
     }
 

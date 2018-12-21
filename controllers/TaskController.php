@@ -8,24 +8,22 @@ class TaskController extends Controller
 {
     public function actionIndex()
     {
-        //echo "Task page!";exit;
-
 
         $model = new Task();
 
         $model->load([
             'Task' =>
                 [
-                    'id' => 13,
-                    'title' => 'test',
+                    'title' => 'task',
                     'status' => 'completed',
-                    'manager' => 'Not Geek',
+                    'manager' => 'Geek',
                 ]
         ]
         );
 
+        $model->save();
         var_dump($model);
-        var_dump($model->validate());
+        //var_dump($model->validate());
         //echo $model->getAttributeLabel('title');
         var_dump($model->getErrors());exit;
 
