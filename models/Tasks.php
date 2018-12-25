@@ -66,5 +66,5 @@ class Tasks extends \yii\db\ActiveRecord
         return $this->hasOne(Users::className(), ['id' => 'manager_id']);
     }
 
-
+    //public static function getAll
 }
