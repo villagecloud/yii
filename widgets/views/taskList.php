@@ -15,7 +15,8 @@ use app\widgets\TaskWidget;
             <div class="caption">
                 <h3><?= $val['title']?></h3>
                 <p><?= $val['description']?></p>
-                <p><a href="/index.php?r=tasks%2Fview&id=<?=$val['id'] ?>" class="btn btn-primary" role="button">View</a></p>
+                <p><?=Html::a('View', ['tasks/view', 'id' => $val['id']], ['class' => 'btn btn-primary'])?></p>
+                <p><?=Html::a('Update', ['tasks/update', 'id' => $val['id']], ['class' => 'btn btn-primary'])?></p>
                 <p></p>
 
 
