@@ -15,7 +15,7 @@ class m181221_225944_create_task_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('task', [
+        $this->createTable('tasks', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
             'category' => $this->string(),
@@ -28,17 +28,17 @@ class m181221_225944_create_task_table extends Migration
 
         // creates index for column `manager_id`
         $this->createIndex(
-            'idx-task-manager_id',
-            'task',
+            'idx-tasks-manager_id',
+            'tasks',
             'manager_id'
         );
 
         // add foreign key for table `user`
         $this->addForeignKey(
-            'fk-task-manager_id',
-            'task',
+            'fk-tasks-manager_id',
+            'tasks',
             'manager_id',
-            'user',
+            'users',
             'id',
             'CASCADE'
         );
@@ -51,16 +51,16 @@ class m181221_225944_create_task_table extends Migration
     {
         // drops foreign key for table `user`
         $this->dropForeignKey(
-            'fk-task-manager_id',
-            'task'
+            'fk-tasks-manager_id',
+            'tasks'
         );
 
         // drops index for column `manager_id`
         $this->dropIndex(
-            'idx-task-manager_id',
-            'task'
+            'idx-tasks-manager_id',
+            'tasks'
         );
 
-        $this->dropTable('task');
+        $this->dropTable('tasks');
     }
 }
