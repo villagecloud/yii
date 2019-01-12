@@ -9,13 +9,13 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron">
         <h1>Task tracker</h1>
-        <p class="lead">This is a tasks board of your organisation.</p>
+        <p class="lead">This is board of tasks for your organisation.</p>
     </div>
 
 
     <div class="body-content">
         <div class="row">
-            <?= \app\widgets\TaskWidget::widget(); ?>
+            <? //echo  \app\widgets\TaskWidget::widget(); ?>
         </div>
     </div>
 </div>

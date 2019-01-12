@@ -1,2 +1,11 @@
-<h1>Task page</h1>
-<p>Lesson 1</p>
+<?php //var_dump($dataProvider->getModels());?>
+
+<?php  echo \yii\widgets\ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemView' => function($model){
+            //var_dump($model);
+            return \app\widgets\TaskWidget::widget(['model' => $model]);
+        },
+        'summary' => false,
+]);
+?> 
