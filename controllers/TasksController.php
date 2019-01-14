@@ -29,6 +29,7 @@ class TasksController extends Controller
         ];
     }
 
+
     /**
      * Lists all Tasks models.
      * @return mixed
@@ -89,6 +90,19 @@ class TasksController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+
+        //TEST Event for Tasks update
+
+/*        $model->on(Tasks::TEST_EVENT, function($event){
+            Yii::$app->mailer->compose()
+                ->setTo('2@2test.com')
+                ->setFrom('333333@2test.com')
+                ->setSubject('New task has been created')
+                ->setTextBody('TEST EMAIL')
+                ->send();
+        });
+
+        $model->trigger(Tasks::TEST_EVENT);*/
 
         return $this->render('update', [
             'model' => $model,

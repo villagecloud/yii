@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\controllerEvents\TaskEvent;
 use app\components\validators\CustomValidator;
 use Yii;
 use yii\base\Model;
@@ -14,15 +15,6 @@ use yii\db\ActiveRecord;
  */
 class Task extends ActiveRecord
 {
-/*    public $id;
-    public $title;
-    public $status;
-    public $category;
-    public $description;
-    public $manager;
-    public $creation_date;
-    public $due_date;
-    public $attachment;*/
 
     public static function tableName()
     {

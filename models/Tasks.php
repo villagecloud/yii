@@ -3,7 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "tasks".
@@ -23,10 +25,25 @@ class Tasks extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
+     *
      */
+
+    //public const TEST_EVENT = 'Email sent';
+
     public static function tableName()
     {
         return 'tasks';
+    }
+
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
     }
 
     /**
@@ -66,6 +83,4 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Users::className(), ['id' => 'manager_id']);
     }
-
-    //public static function getAll
 }
