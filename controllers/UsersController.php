@@ -20,8 +20,11 @@ class UsersController extends Controller
             Yii::$app->response->redirect(['site/login'],302);
         }
 
+
+        //Добавлен cache при получении данных из БД
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Tasks::find()->where(['manager_id' => Yii::$app->user->id])
+            'query' => Tasks::find()->cache(100)->where(['manager_id' => Yii::$app->user->id])
         ]);
 
         return $this->render('index', [
