@@ -18,15 +18,16 @@ class Task extends ActiveRecord
 
     public static function tableName()
     {
-        return 'task';
+        return 'tasks';
     }
 
     public function rules()
     {
         return [
-            [['title', 'status'], 'required'],
-            ['title', 'myRule'],
-            ['manager', CustomValidator::class],
+            [['manager_id'], 'required'],
+            [['manager_id'], 'integer'],
+            [['title', 'category', 'description', 'creation_date', 'due_date', 'attachment'], 'string', 'max' => 255],
+            [['manager_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['manager_id' => 'id']],
         ];
     }
 
@@ -35,6 +36,13 @@ class Task extends ActiveRecord
         if($this->$attribute == 'test' || strlen($this->$attribute) < 4){
             $this->addError($attribute, "Name cannot be *Test* or less than 4 symbols");
         }
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+        ];
     }
 
 }

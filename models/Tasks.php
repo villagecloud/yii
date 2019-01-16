@@ -15,6 +15,7 @@ use yii\db\Expression;
  * @property string $category
  * @property string $description
  * @property string $creation_date
+ * @property string $created_at
  * @property string $due_date
  * @property string $attachment
  * @property int $manager_id
