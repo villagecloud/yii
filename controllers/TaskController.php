@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
+use yii\web\UploadedFile;
 use Yii;
 use app\models\Task;
 use app\models\Tasks;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use app\models\filters\TasksSearch;
+use app\models\Comments;
 
 class TaskController extends Controller
 {
@@ -37,7 +38,34 @@ class TaskController extends Controller
     public function actionView($id)
     {
         $model = Tasks::findOne($id);
-        return $this->render('view', ['model' => $model]);
+
+        $newComment = new Comments();
+        $newComment->task_id = $id;
+
+        $comments = $model->getComments()->all();
+        $uploaded_file = UploadedFile::getInstance($newComment,'attachment');
+
+        if ($newComment->load(Yii::$app->request->post()) && $newComment->save()) {
+
+
+            //var_dump($newComment);exit;
+                $newComment->attachment = $uploaded_file;
+                $newComment->upload();
+
+                if($newComment->attachment != null){
+                    $newComment->attachment = $uploaded_file->name;
+                    $newComment->update();
+                }
+
+
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('view', [
+            'model' => $model,
+            'comments' => $comments,
+            'newComment' => $newComment,
+        ]);
     }
 
     public function actionCreate()

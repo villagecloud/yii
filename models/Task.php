@@ -45,4 +45,9 @@ class Task extends ActiveRecord
         ];
     }
 
+    public function getComments()
+    {
+        return $this->hasMany(Comments::className(), ['task_id' => 'id']);
+    }
+
 }

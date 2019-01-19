@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Comments;
 use Yii;
 use app\models\Tasks;
 use app\models\filters\TasksSearch;
@@ -55,6 +56,7 @@ class TasksController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            //'comments' => $comments,
         ]);
     }
 

@@ -11,6 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Tasks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
+<?php //var_dump($comments)?>
+
 <div class="tasks-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
