@@ -14,6 +14,7 @@ use yii\web\UploadedFile;
  * @property string $comment
  * @property UploadedFile $attachment
  * @property Tasks $task
+ * @property Users $user
  */
 class Comments extends \yii\db\ActiveRecord
 {
@@ -33,6 +34,7 @@ class Comments extends \yii\db\ActiveRecord
         return [
             [['task_id'], 'required'],
             [['task_id'], 'integer'],
+            [['user_id'], 'integer'],
             [['comment'], 'required'],
             [['attachment'], 'file', 'extensions' =>  'png, jpg'],
             [['task_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tasks::className(), 'targetAttribute' => ['task_id' => 'id']],
@@ -57,8 +59,14 @@ class Comments extends \yii\db\ActiveRecord
      */
     public function getTask()
     {
-        return $this->hasOne(Tasks::className(), ['id' => 'task_id']);
+        return $this->hasOne(Tasks::class, ['id' => 'task_id']);
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(Users::class, ['id' => 'user_id']);
+    }
+
 
     public function upload()
     {

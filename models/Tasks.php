@@ -21,6 +21,8 @@ use yii\db\Expression;
  * @property int $manager_id
  *
  * @property Users $manager
+ * @property Comments[] $сomments
+ * @property TaskAttachments[] $taskAttachments
  */
 class Tasks extends \yii\db\ActiveRecord
 {
@@ -55,7 +57,8 @@ class Tasks extends \yii\db\ActiveRecord
         return [
             [['manager_id'], 'required'],
             [['manager_id'], 'integer'],
-            [['title', 'category', 'description', 'creation_date', 'due_date', 'attachment'], 'string', 'max' => 255],
+            [['status', 'due_date'], 'safe'],
+            [['title', 'category', 'description', 'creation_date', 'attachment'], 'string', 'max' => 255],
             [['manager_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['manager_id' => 'id']],
         ];
     }
@@ -67,11 +70,11 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => Yii::t('main', 'task_name'),
             'category' => 'Category',
-            'description' => 'Description',
+            'description' => Yii::t('main', 'task_description'),
             'creation_date' => 'Creation Date',
-            'due_date' => 'Due Date',
+            'due_date' => Yii::t('main', 'task_date'),
             'attachment' => 'Attachment',
             //'manager_id' => 'Manager ID',
         ];
@@ -89,4 +92,15 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comments::class, ['task_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTaskAttachments()
+    {
+        return $this->hasMany(TaskAttachments::className(), ['task_id' => 'id']);
+    }
+
+
+
 }

@@ -6,7 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'bootstrap'],
+    'bootstrap' => ['log', 'bootstrap', 'bootstrap1'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -15,6 +15,9 @@ $config = [
     'components' => [
         'bootstrap' => [
             'class' => \app\components\controllerEvents\TaskEvent::class,
+        ],
+        'bootstrap1' => [
+            'class' => \app\components\BootstrapLang::class,
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -47,6 +50,14 @@ $config = [
             ],
         ],
         'db' => $db,
+        'i18n' => [
+            'translations' => [
+                'main' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@app/messages',
+                        ]
+                ]
+            ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

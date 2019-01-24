@@ -11,7 +11,7 @@ use app\widgets\TaskWidget;
             <div class="caption">
                 <h3><?= $model->title?></h3>
                 <p><?= $model->description?></p>
-                <p><?=Html::a('View', ['task/view', 'id' => $model->id], ['class' => 'btn btn-primary'])?></p>
+                <p><?=Html::a('View', ['task/one', 'id' => $model->id], ['class' => 'btn btn-primary'])?></p>
                 <p><?=Html::a('Update', ['task/update', 'id' => $model->id], ['class' => 'btn btn-primary'])?></p>
             </div>
         </div>

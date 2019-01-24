@@ -13,13 +13,7 @@ use yii\widgets\ActiveForm;
 <p><?= $model->description?></p>
 
 <div class="panel panel-default">
-    <!-- Default panel contents -->
     <div class="panel-heading">Comments:</div>
-    <!--    <div class="panel-body">
-            <p>...</p>
-        </div>-->
-
-    <!-- List group -->
     <ul class="list-group">
         <?php
 

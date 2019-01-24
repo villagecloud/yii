@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'attachment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'manager_id')->dropDownList(\app\models\Users::getAllFromDb()) ?>
+    <?= $form->field($model, 'manager_id')->dropDownList(\app\models\Users::getUsersList()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

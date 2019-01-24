@@ -26,7 +26,8 @@ class Task extends ActiveRecord
         return [
             [['manager_id'], 'required'],
             [['manager_id'], 'integer'],
-            [['title', 'category', 'description', 'creation_date', 'due_date', 'attachment'], 'string', 'max' => 255],
+            [['status', 'due_date'], 'safe'],
+            [['title', 'category', 'description', 'creation_date', 'attachment'], 'string', 'max' => 255],
             [['manager_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['manager_id' => 'id']],
         ];
     }

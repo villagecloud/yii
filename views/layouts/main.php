@@ -55,7 +55,11 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            ),
+            ['label' => 'Lang', 'items' =>[
+                ['label' => 'ru', 'url' => ['site/lang', 'lang' => 'ru']],
+                ['label' => 'en', 'url' => ['site/lang', 'lang' => 'en']],
+            ]],
         ],
     ]);
     NavBar::end();

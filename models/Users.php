@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 
 /**
@@ -72,8 +73,12 @@ class Users extends \yii\db\ActiveRecord
         return $this->hasOne(Roles::class, ['id' => 'role_id']);
     }
 
-    public static function getAllFromDb(){
-        return static::find()->select('username')->indexBy('id')->column();
+    public static function getUsersList(){
+         $users = static::find()
+            ->select(['id','username'])
+            ->asArray()
+            ->All();
+        return ArrayHelper::map($users, 'id', 'username');
     }
 
     public static function getUserById($id){
