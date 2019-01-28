@@ -4,7 +4,10 @@
 use yii\helpers\Html;
 
 $this->title = 'My Yii Application';
+
+\app\assets\MainAsset::register($this);
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
@@ -13,9 +16,11 @@ $this->title = 'My Yii Application';
     </div>
 
 
-    <div class="body-content">
+    <div id="my-container" class="body-content">
         <div class="row">
-            <? //echo  \app\widgets\TaskWidget::widget(); ?>
+            <?/* //echo  \app\widgets\TaskWidget::widget(); */?>
+            <button id="my_button" class="btn btn-success">Rock'n'roll</button>
         </div>
+
     </div>
 </div>
