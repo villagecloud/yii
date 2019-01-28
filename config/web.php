@@ -12,6 +12,11 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@img' => '@app/web/img',
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\module',
+        ],
+    ],
     'components' => [
         'bootstrap' => [
             'class' => \app\components\controllerEvents\TaskEvent::class,
