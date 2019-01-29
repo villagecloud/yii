@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use yii\db\Exception;
+use yii\web\ForbiddenHttpException;
 use yii\web\UploadedFile;
 use Yii;
 use app\models\Task;
@@ -70,6 +72,11 @@ class TaskController extends Controller
 
     public function actionOne($id)
 {
+/*    if(!Yii::$app->user->can('TaskDelete'))
+    {
+        throw New ForbiddenHttpException();
+    }*/
+
     return $this->render('one', [
         'model' => Tasks::findOne($id),
         'usersList' => Users::getUsersList(),
@@ -95,6 +102,9 @@ class TaskController extends Controller
 
     public function actionAddComment()
     {
+        if(!Yii::$app->user->can('CommentCreate')){
+            throw new ForbiddenHttpException();
+        }
         $model = new Comments();
         if($model->load(\Yii::$app->request->post()) && $model->save()){
             \Yii::$app->session->setFlash('success', "Комментарий добавлен");
@@ -107,6 +117,9 @@ class TaskController extends Controller
 
     public function actionAddAttachment()
     {
+        if(!Yii::$app->user->can('AttachmentCreate')){
+            throw new ForbiddenHttpException();
+        }
         $model = new TaskAttachmentsAddForm();
         $model->load(\Yii::$app->request->post());
         $model->file = UploadedFile::getInstance($model, 'file');

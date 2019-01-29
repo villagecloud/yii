@@ -18,6 +18,9 @@ $config = [
         ],
     ],
     'components' => [
+        'authManager' =>[
+            'class' => \yii\rbac\DbManager::class,
+        ],
         'bootstrap' => [
             'class' => \app\components\controllerEvents\TaskEvent::class,
         ],

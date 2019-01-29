@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\admin;
+use yii\filters\AccessControl;
 
 /**
  * admin module definition class
@@ -21,4 +22,19 @@ class module extends \yii\base\Module
 
         // custom initialization code goes here
     }
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ]
+                ],
+            ],
+        ];
+    }
+
 }
